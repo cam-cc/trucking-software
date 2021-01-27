@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/0983a48497.js" crossorigin="anonymous"></script>
+    <title>Invoice</title>
+    <!-- Change title -->
+</head>
+<body>
+    <!-- Logo goes here! -->
+    <a href="mainWindow.html"><img class="logo" src="http://www.triseclogistics.com/wp-content/uploads/2015/08/logo.jpg" alt="logo"></a>
+    <div class="invoice-main">
+        <h1 class="title-view-data">Company Info <i class="far fa-file-alt"></i></h1>
+         <!-- company container -->
+        <div class="invoice-container">
+            <div class="starting-point">
+                <label for="mag">Point A    <i class="fa fa-address-card-o"></i></label>
+                 <!-- starting point is place previously clicked -->
+                 <h4 id="mag"> Magnesium Products Of America, Ohio, 69.696969 -80.42069</h4>
+            </div>
+            <div class="end-point">
+                <label for="dest">Point B    <i class="fa fa-address-card-o"></i></label>
+                <input list="dest">
+                <i class="fa fa-edit"></i>
+
+                <datalist id="dest">
+                  <!-- using javascript to load data -->
+                </datalist>
+                <h4 id="mag"> Meridian Lightweight Technologies, Ohio, 69.696969 -80.42069</h4>
+            </div>
+        </div>
+    </div>
+        <div class="driverinfo">
+            <div class="driver">
+                <!-- Select Driver here By first name-->
+                <label for="driver-list">Driver(Name)    <i class="fa fa-user-o"></i></label>
+                <input list="driver-list">
+
+                <datalist id="driver-list">
+                  {% for driver in operator %}
+                  <option value={{driver.firstName}}{{driver.lastName}}>
+                  {% endfor %}
+                </datalist>
+            </div>
+            <div class="trailer">
+                 <!-- Select Trialer here By trailer ID -->
+                 <label for="trailer-list">Trailer(ID)    <i class="fa fa-road"></i></label>
+                 <input list="trailer-list">
+
+                <datalist id="trailer-list">
+                  <option value="987">
+                  <option value="989">
+                  <option value="350">
+                  <option value="736">
+                  <option value="970">
+                </datalist>
+            </div>
+            <div class="truck">
+                 <!-- Select Truck here By Truck ID -->
+                 <label for="truck-list">Truck(ID)    <i class="fa fa-truck"></i></label>
+                 <input list="truck-list">
+
+                <datalist id="truck-list">
+                  <option value="52">
+                  <option value="206">
+                  <option value="134147">
+                  <option value="159890">
+                  <option value="997">
+                </datalist>
+            </div>
+        </div>
+        <div class="submit">
+            <button type="button" class="btn btn-outline-success">Submit Entries</button>
+        </div>    
+          <label for="output" style="font-size:3em; width: 100%; text-align: center;">Invoice Results  <i class="fa fa-info-circle"></i></label>
+            <div class="output">
+                 <!-- Calculate distance Divide Weight account for FSC -->
+                 <p>In theory this section, will display the results for example the distance travelled. <br>
+                    and total weight aswell as full driver info and company info (pay per mile, round trip pay) <br>
+                    aswell displaying the FSC being used
+                 </p>
+            </div>
+
+        </div>
+    <script src="viewData.js">
+    </script>
+</body>
+</html>

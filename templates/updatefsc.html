@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='css/style.css') }}"
+    />
+    <script
+      src="https://kit.fontawesome.com/0983a48497.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Invoice</title>
+    <!-- Change title -->
+  </head>
+  <body>
+    <!-- Logo goes here! -->
+    <a href="../trisec-logistics/mainWindow.html"
+      ><img
+        class="logo"
+        src="http://www.triseclogistics.com/wp-content/uploads/2015/08/logo.jpg"
+        alt="logo"
+    /></a>
+    <div class="invoice-main">
+      <h1 class="title-view-data">
+        Update Company <i class="far fa-file-alt"></i>
+      </h1>
+      <!-- company container -->
+      <div class="update-main">
+        <h3 id="{{company.ID}}" class="company-name">
+          {{company.company}}
+        </h3>
+        <div class="updatefscdiv">
+          <p class="dollar-sign">$</p>
+          <input
+            id="fsc-input"
+            class="decimal-input"
+            type="number"
+            required
+            name="price"
+            min="0"
+            value="{{company.fsc}}"
+            step=".01"
+          />
+          <button id="update-fsc" class="btn btn-outline-primary">
+            Update FSC
+          </button>
+        </div>
+        <div class="updateflateratediv">
+          <p class="dollar-sign">$</p>
+          <input
+            id="flatrate-input"
+            class="decimal-input"
+            type="number"
+            required
+            name="price"
+            min="0"
+            value="{{company.rate}}"
+            step=".01"
+          />
+          <button id="update-flatrate" class="btn btn-outline-primary">
+            Update flatrate
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="map"></div>
+    <script src="{{ url_for('static',filename='script/updatefsc.js') }}"></script>
+    <script src="{{ url_for('static',filename='script/getData.js') }}"></script>
+  </body>
+</html>

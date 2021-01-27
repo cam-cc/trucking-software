@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='css/style.css') }}"/>
+    <script src="https://kit.fontawesome.com/0983a48497.js" crossorigin="anonymous"></script>
+    <title>Invoice</title>
+    <!-- Change title -->
+</head>
+<body>
+    <!-- Logo goes here! -->
+    <a href="{{ url_for('static',filename='pages/mainWindow.html') }}"><img class="logo" src="http://www.triseclogistics.com/wp-content/uploads/2015/08/logo.jpg" alt="logo"></a>
+    <div id="map"></div>
+       <div id="mapB"></div>
+    <div class="invoice-main">
+        <h1 class="title-view-data">Company Info <i class="far fa-file-alt"></i></h1>
+         <!-- company container -->
+        <div class="invoice-container">
+            <div class="starting-point">
+                <label for="startcompany">Point A    <i class="fa fa-address-card-o"></i></label>
+                 <!-- starting point is place previously clicked -->
+                 <h4 class="startcompany" id={{ID}}> {{ID}} | {{company.company}} | {{company.address}} | {{company.city}} | {{company.stateProvince}} </h4>
+                 <span class="alat" id={{company.latitude}}></span>
+                 <span class="alng" id={{company.longitude}}></span>
+            </div>
+          <form onsubmit="submission();" id="invoiceForm" method="POST">
+            <div class="end-point">
+                <label for="companylist">Point B    <i class="fa fa-address-card-o"></i></label>
+
+                <select name="companylist" id="companylist" onchange="changeFunc();">
+                <i class="fa fa-edit"></i>
+                  {% for comp in companies %}
+                    <option value={{comp.companyID}}>{{comp.company}}</option>
+                  {% endfor %}
+                </select>
+                <h4 id="endcompany"> Make a Selection Above.. </h4>
+            </div>
+        </div>
+    </div>
+        <div class="driverinfo">
+            <div class="driver">
+                <!-- Select Driver here By first name-->
+                <label for="driverlist">Driver(ID)    <i class="fa fa-user-o"></i></label>
+
+                <select name="driverlist"  id="driverlist" onchange="paygrade();">
+                  {% for driver in operator %}
+                    <option value={{driver.driverID}} id={{driver.driverID}}>{{driver.firstName}} {{driver.lastName}}</option>
+                  {% endfor %}
+                </select>
+                <div id="payroll">
+                <!-- Check for driver owner/operator -->    
+                </div>
+            </div>
+            <div class="trailer">
+                 <!-- Select Trialer here By trailer ID -->
+                 <label for="trailerlist">Trailer(ID)    <i class="fa fa-road"></i></label>
+                 <select id="trailerlist" name="trailerlist">
+                    <option value="default">Make a selection</option>
+                  {% for trail in trailer %}
+                    <option value={{trail.trailer}}>{{trail.trailer}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <div class="truck">
+                 <!-- Select Truck here By Truck ID -->
+                 <label for="trucklist">Truck(ID)    <i class="fa fa-truck"></i></label>
+
+                 <select id="trucklist" name="trucklist">
+                    <option value="default">Make a selection</option>
+                  {% for t in truck %}
+                    <option value={{t.truckID}}>{{t.truckID}}</option>
+                  {% endfor %}
+                </select>
+                <input type="submit" id="submit" class="btn btn-outline-success" value="Submit Entries"/>
+            </div>
+        </div>
+      </form>
+          <label for="output" style="font-size:3em; width: 100%; text-align: center;">Invoice Results  <i class="fa fa-info-circle"></i></label>
+            <div class="output">
+                 <!-- Calculate distance Divide Weight account for FSC -->
+                 <div id="compA" class="text-primary text-center">
+                   <!-- Loaded In Invoice.js -->
+                 </div>
+                 <div id="distance" class="text-primary text-center">
+                    <i class="fa fa-compass"></i>
+                   <!-- The total distance in Miles between CompA and CompB -->
+                 </div>
+                 <div id="compB" class="text-primary text-center">
+                   <!-- Loaded In Invoice.js -->
+                 </div>
+                 <div id="wrapper">
+                    <span class="text-center" for="empinfo" id="driverlabel" style="font-size: 1.25rem;"></span>
+                    <span class="text-center" for="carinfo" id="trucklabel" style="font-size: 1.25rem;"></span>
+                    <span class="text-center" for="trailinfo" id="trailerlabel" style="font-size: 1.25rem;"></span>
+                    <div id="empinfo" class="text-primary text-center">
+                        <!-- Load the Driver information -->
+                    </div>
+                    <div id="carinfo" class="text-primary text-center">
+                        <!-- Load the Truck information -->
+                    </div>
+                    <div id="trailinfo" class="text-primary text-center">
+                        <!-- Loaded In Invoice.js -->
+                    </div>
+                 </div>
+                 <div id="pay" class="text-success text-center" style="font-size: 2rem; margin: auto;">
+                    <!-- Here displays the driver pay -->
+                 </div>
+            </div>
+        </div>
+    <script src="{{ url_for('static',filename='script/invoice.js') }}"></script>
+    <script src="{{ url_for('static',filename='script/getData.js') }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKnMzEpNMR4g3d6EkZZDPtGJ-1AN4rLoc&callback=initMap"></script>
+</body>
+</html>

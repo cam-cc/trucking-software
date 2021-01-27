@@ -1,0 +1,15 @@
+{
+  "name": "trucking-software",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Cameron Coenjarts",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^8.5.5"
+  }
+}
